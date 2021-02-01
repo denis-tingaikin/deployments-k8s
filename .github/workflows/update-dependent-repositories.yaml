@@ -44,10 +44,9 @@ jobs:
       - uses: actions/setup-go@v1
         with:
           go-version: 1.15
-      - name: Update ${{ github.repository }} locally
+      - name: Update ${{ matrix.repository }} locally
         working-directory: ${{ github.workspace }}/src/github.com/networkservicemesh/${{ matrix.repository }}
         run: |
-          GOPRIVATE=github.com/networkservicemesh go get -u github.com/${{ github.repository }}
           go generate ./...
           go mod tidy
           git diff
@@ -58,8 +57,8 @@ jobs:
       - name: Find and Replace version
         uses: jacobtomlinson/gha-find-replace@master
         with:
-          find: "s.Version =.*\n"
-          replace: "$s.Version =${{ steps.short-sha.outputs.sha }}\n"
+          find: "s\\.Version = .*\n"
+          replace: "s.Version = \"${{ steps.short-sha.outputs.sha }}\"\n"
       - name: Push update to the ${{ matrix.repository }}
         working-directory: ${{ github.workspace }}/src/github.com/networkservicemesh/${{ matrix.repository }}
         run: |
