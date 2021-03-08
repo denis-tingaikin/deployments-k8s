@@ -17,7 +17,7 @@ Basis example contains setup and tear down logic with default NSM infrastructure
 - [Kernel to VXLAN to Memif Connection](../use-cases/Kernel2Vxlan2Memif)
 - [Memif to VXLAN to Kernel Connection](../use-cases/Memif2Vxlan2Kernel)
 
-**Featues**
+**Features**
 - [Open Policy Agent](../features/opa)
 
 ## Run
